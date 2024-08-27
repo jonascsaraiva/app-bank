@@ -11,12 +11,7 @@ void main() {
 
     setUp(() {
       account1 = SimpleAccount('Diego', 1001, 1000.0);
-      account2 = PremiumAccount(
-        'Arthur',
-        1002,
-        500.0,
-        cashBack: 10.0,
-      );
+      account2 = PremiumAccount('Arthur', 1002, 500.0, cashBack: 10.0);
     });
 
     test('should transfer money from one simple account to premium account',
@@ -24,6 +19,19 @@ void main() {
       transferService(account1, account2, 200.0);
 
       expect(account1.getBalance(), 800.0);
+      expect(account2.getBalance(), 700.0);
+    });
+
+    test('should not transfer money from one simpleaccount to another', () {
+      transferService(account2, account2, 0);
+
+      expect(account2.getBalance(), 0);
+    });
+
+    test('should not transfer if account is in debth or zero', () {
+      transferService(account1, account2, 200.0);
+
+      expect(account2.getBalance(), 320);
       expect(account2.getBalance(), 700.0);
     });
   });

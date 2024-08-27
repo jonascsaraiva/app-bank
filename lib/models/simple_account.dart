@@ -24,12 +24,6 @@ class SimpleAccount implements Account {
   }
 
   @override
-  String getInfo() {
-    // TODO: implement getInfo
-    throw UnimplementedError();
-  }
-
-  @override
   AccountType getType() {
     return AccountType.simple;
   }
